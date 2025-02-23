@@ -12,14 +12,14 @@ script_dir = os.path.dirname(os.path.abspath(__file__))
 lib_path = os.path.join(script_dir, 'lib')
 bmp_path = os.path.join(script_dir, 'bmp')
 sys.path.append(lib_path)
-from waveshare_epd import epd5in65f
+from lib.waveshare_epd import epd7in3f
 
 class Display:
     
     def __init__(self):
         self.last_display_time = time.time()
         self.last_selected_image = None
-        self.epd = epd5in65f.EPD()
+        self.epd = epd7in3f.EPD()
         self.epd.init()
         
     def fetch_image_files(self):
@@ -96,7 +96,7 @@ class Display:
         qr_img = qr.make_image(fill_color="black", back_color="white").convert("RGB")
         qr_img = qr_img.resize((300, 300))
         
-        full_img = Image.new("RGB", (600, 448), color="white")
+        full_img = Image.new("RGB", (800, 480), color="white")
 
         qr_x = (full_img.width - qr_img.width) // 2
         qr_y = (full_img.height - qr_img.height) // 2
